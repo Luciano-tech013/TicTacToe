@@ -1,3 +1,105 @@
-.active {
-    background-color: aqua;
+.list__players__item {
+    font-size: 2.5rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 8px 15px;
+}
+
+.list__players__item__active {
+    outline: 3px solid rgb(124, 207, 97);
+    animation: pulse 1.7s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(124, 207, 97, 0);
+    }
+    50% {
+      box-shadow: 0 0 0.7rem 0.3rem rgba(124, 207, 97, 0.5);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(124, 207, 97, 0);
+    }
+}
+
+.list__players__item__symbol {
+    color: rgb(227, 227, 227);
+    font-size: 2.2rem;
+    font-family: 'Caprasimo', cursive;
+    flex-shrink: 0; 
+    width: 2rem;
+    text-align: center;
+}
+
+.list__players__item__name__container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
+}
+
+.list__players__item__name {
+    font-family: 'Caprasimo', cursive;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 10rem;
+    font-size: 1.8rem;
+    color: rgb(227, 227, 227);
+    text-transform: uppercase;
+    padding: 0.3rem;
+    border-radius: 4px;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.list__players__item__input {
+    box-sizing: border-box;
+    font: inherit;
+    color: rgb(182, 182, 182);
+    font-size: 1.8rem;
+    font-family: 'Caprasimo', cursive;
+    width: 10rem;
+    border: none;
+    padding: 0.3rem;
+    animation: pulse-text .7s infinite alternate;
+    background-color: rgba(19, 16, 16, 0.721);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+@keyframes pulse-text {
+    100% {
+        color: white;
+    }
+    0% {
+        color: rgb(71, 70, 70);
+    }
+}
+
+.list__players__item__btn {
+    background: none;
+    border: none;
+    color: rgb(90, 188, 58);
+    font-size: 1.4rem;
+    width: 3rem;
+}   
+
+.list__players__item__btn:hover {
+    color: rgb(227, 227, 227);
+}
+
+@media (width > 1200px) {
+    .list__players__item {
+        width: 50%;
+    }
+}
+
+@media (width <= 1200px) and (width > 700px) {
+    .list__players__item {
+        width: 100%;
+    }
 }

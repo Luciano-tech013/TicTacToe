@@ -1,0 +1,34 @@
+.list__players__container {
+    background-color: rgba(42, 41, 41, 0.932);
+    padding: 30px;
+    margin-top: 1%;
+    border-radius: 14px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.menu__toggle__container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding-top: 5%;
+}
+
+.menu__toggle__btn {
+    border: none;
+    background: none;
+    width: 75px;
+    height: 75px;
+    font-size: 45px;
+    border-radius: 10px;
+    background-color: rgba(42, 41, 41, 0.932);
+    color: rgb(227, 227, 227);
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.5);
+}
+
+.menu__toggle__btn:hover {
+    color: rgb(131, 130, 130);
+}
+
+.menu__toggle__btn:active {
+    transform: scale(0.9);
+}

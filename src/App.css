@@ -1,0 +1,81 @@
+:root {
+    --primary: rgba(2, 123, 203, 0.863);
+    --secondary: rgb(96, 181, 234);
+    --mid: rgb(49, 152, 218);
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background: radial-gradient(
+        circle at top,
+        var(--primary),
+        var(--secondary)
+      ),
+      url('/public/bg-pattern-dark.png');
+    background-repeat: repeat;
+    background-size: 100% 100%, 30% 30%;
+    min-height: 57.5rem;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container__header {
+    margin: 1.5rem auto;
+}
+
+.container__header h1 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    font-family: 'Caprasimo', cursive;
+    font-size: 3rem;
+    color: rgb(33, 33, 33);
+}
+
+.container__header h1 img {
+    width: 125px;
+    height: 125px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.4));
+}
+
+.container__btn__play {
+    box-sizing: border-box;
+    background: none;
+    background-color: rgb(42, 41, 41);
+    color: rgb(227, 227, 227);
+    margin-top: 8%;
+    font-size: 3rem;
+    font-family: 'Caprasimo', cursive;
+    border: none;
+    border-radius: 15px 15px 15px 15px;
+    padding: 10px 35px 15px 35px;
+    transition-duration: .4s;
+}
+
+.container__btn__play:hover {
+    background-color: rgb(124, 207, 97);
+    color: rgb(35, 34, 34);
+    border: 2px solid rgb(68, 151, 40);;
+    font-weight: 600;
+    transform: scale(1.1);
+    transition-duration: .5s;
+    box-shadow: 0px 0px 8px rgb(144, 210, 122);
+}
+
+.container__btn__play:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+  

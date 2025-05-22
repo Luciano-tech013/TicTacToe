@@ -1,21 +1,59 @@
 import { useState } from "react";
-import GameBoard from "./components/GameBoard/GameBoard";
-import Player from "./components/Player/Player";
+import { usePlayers } from "./hooks/usePlayers.mjs";
+import gameLogo from "../public/gameLogo.png";
+import Game from "./components/Game/Game";
+import MenuConfig from "./components/MenuConfig/MenuConfig";
+import ClickableButton from "./components/ClickableButton/ClickableButton";
+import gameStartSound from "../public/sounds/gameStartSound.mp3";
 
+import "./App.css";
+
+//Orquesta páginas
 export default function App() {
-    const [ activePlayer, setActivePlayer ] = useState("X");
+  const [ isGameStarted, setIsGameStarted ] = useState(false);
+  const {
+    players,
+    handlePlayerNameChange,
+    handlePlayerTurnToggle,
+    areDisabled,
+  } = usePlayers();
+  
+  const handleGameStarted = () => {
+    setIsGameStarted((activeGame) => !activeGame);
+  }
 
-    function handleChangeActivePlayer() {
-        setActivePlayer(currentActiveSymbol => currentActiveSymbol == "X" ? "O" : "X");
-    }
-    
+  if(!isGameStarted) {
     return (
-        <main>
-            <ol>
-                <Player initialName="Player 1" symbol="X" isActive={activePlayer == "X"}/>
-                <Player initialName="Player 2" symbol="O" isActive={activePlayer == "O"}/>
-            </ol>
-            <GameBoard onSelectSquare={handleChangeActivePlayer} activePlayerSymbol={activePlayer}/>
-        </main>
+      <section className="container">
+        <header className="container__header">
+          <h1>
+            <img src={gameLogo} alt="Logo del juego" /> Tic-Tac-Toe
+          </h1>
+        </header>
+        <MenuConfig
+          players={players}
+          onChangePlayerName={handlePlayerNameChange}
+          onTogglePlayerTurn={handlePlayerTurnToggle}
+        />
+        <ClickableButton
+          className="container__btn__play"
+          onClick={handleGameStarted}
+          disabled={areDisabled}
+          sound={gameStartSound}
+        >
+          Jugar
+        </ClickableButton>
+      </section>
     );
+  }
+  
+  return (
+    <section className="container">
+      <Game
+        players={players}
+        onChangePlayerName={handlePlayerNameChange}
+        onQuitGame={handleGameStarted}
+      />
+    </section>
+  );
 }

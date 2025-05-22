@@ -1,33 +1,61 @@
-import { useState } from "react";
-import './Player.css';
+import { usePlayerEdit } from "../../hooks/usePlayerEdit.mjs";
+import { useEffectSound } from "../../hooks/useEffectSound.mjs";
+import ClickableButton from "../ClickableButton/ClickableButton";
+import clickPlayerButtonSound from "../../../public/sounds/clickPlayerButtonSound.mp3";
+import keyDownPlayerSound from "../../../public/sounds/keyDownPlayerSound.mp3";
 
-export default function Player({ initialName, symbol, isActive}) {
-    const [ playerName, setPlayerName ] = useState(initialName);
-    const [ isEditing, setIsEditing ] = useState(false);
+import "./Player.css";
 
-    function handleChangePlayerName(event) {
-        //Creo nuevo estado
-        setPlayerName(event.target.value);
-    }
+const INPUT_MAX_LENGTH = 8;
 
-    function handleEditClick() {
-        //Creo nuevo estado
-        setIsEditing(isEditing => !isEditing);
-    }
+export default function Player({ initialName, symbol, isHisTurn, isEditable, onNameChange }) {
+  const { 
+    isEditing, 
+    playerName, 
+    handleChangeEditing, 
+    handleChangePlayerName 
+  } = usePlayerEdit(initialName, onNameChange);
 
-    let editPlayerName = <span>{playerName}</span>;
+  const { playSound, soundEnabled } = useEffectSound(keyDownPlayerSound);
 
-    if(isEditing) {
-        editPlayerName = <input type="text" onChange={handleChangePlayerName} required/>
-    }
+  const handleKeyPress = () => {
+    if(soundEnabled)
+      playSound();
+  };
 
-    const buttonCaption = isEditing ? "Save" : "Edit";
-    
-    return (
-        <li className={isActive ? "active" : ""}>
-            {editPlayerName}
-            <span>{symbol}</span>
-            <button onClick={handleEditClick}>{buttonCaption}</button>
-        </li>
-    );
+  const classNameCaption = isHisTurn ? "list__players__item__active" : "";
+
+  const elemenToShowCaption = isEditing ? (
+    <input
+      className="list__players__item__input"
+      value={playerName}
+      onChange={(e) => handleChangePlayerName(e.target.value)}
+      onKeyDown={handleKeyPress}
+      maxLength={INPUT_MAX_LENGTH}
+    />
+  ) : (
+    <span className="list__players__item__name">{playerName}</span>
+  );
+
+  const buttonCaption = isEditing ? "Save" : "Edit";
+ 
+  return (
+    <li className={`list__players__item ${classNameCaption}`}>
+      <div className="list__players__item__name__container">
+        {elemenToShowCaption}
+      </div>
+
+      <span className="list__players__item__symbol">{symbol}</span>
+      {isEditable && (
+        <ClickableButton
+          className="list__players__item__btn"
+          onClick={handleChangeEditing}
+          disabled={false}
+          sound={clickPlayerButtonSound}
+        >
+          {buttonCaption}
+        </ClickableButton>
+      )}
+    </li>
+  );
 }
