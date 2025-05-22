@@ -6,8 +6,9 @@ import clickPlayerButton from "../../../public/sounds/clickPlayerButtonSound.mp3
 import confetti from "canvas-confetti";
 
 import "./GameResult.css";
+import NavigateButton from "../NavigateButton/NavigateButton";
 
-export default function GameResult({ message, onRestartGame, onQuitGame }) {
+export default function GameResult({ message, onRestartGame }) {
   const { playSound, soundEnabled } = useEffectSound(winnerSound);
 
   useEffect(() => {
@@ -35,14 +36,14 @@ export default function GameResult({ message, onRestartGame, onQuitGame }) {
       >
         Reiniciar Juego
       </ClickableButton>
-      <ClickableButton
+      <NavigateButton
         className="gameresult__container__btn__finish"
-        onClick={onQuitGame}
-        disabled={false}
+        disbaled={false}
         sound={clickPlayerButton}
+        route="/"
       >
         Volver al Menú
-      </ClickableButton>
+      </NavigateButton>
     </div>
   );
 }

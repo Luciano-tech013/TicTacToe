@@ -37,7 +37,8 @@ body {
     align-items: center;
     flex-direction: column;
     gap: 20px;
-    font-family: 'Caprasimo', cursive;
+    font-family: 'Delius', cursive;
+    font-weight: bold;
     font-size: 3rem;
     color: rgb(33, 33, 33);
 }
@@ -56,7 +57,8 @@ body {
     color: rgb(227, 227, 227);
     margin-top: 8%;
     font-size: 3rem;
-    font-family: 'Caprasimo', cursive;
+    font-family: 'Delius', cursive;
+    font-weight: 600;
     border: none;
     border-radius: 15px 15px 15px 15px;
     padding: 10px 35px 15px 35px;
@@ -66,7 +68,7 @@ body {
 .container__btn__play:hover {
     background-color: rgb(124, 207, 97);
     color: rgb(35, 34, 34);
-    border: 2px solid rgb(68, 151, 40);;
+    border: 2px solid rgb(68, 151, 40);
     font-weight: 600;
     transform: scale(1.1);
     transition-duration: .5s;

@@ -9,7 +9,7 @@ const deriveActivePlayer = plays => {
   return plays.length % 2 === 0 ? "X" : "O";
 }
 
-export default function Game({ players, onChangePlayerName, onQuitGame }) {
+export default function Game({ players, onChangePlayerName }) {
   //Estado Jugadas: Para saber DONDE se clickeo y QUIEN lo clickeo
   const [gamePlays, setGamePlays] = useState([]);
 
@@ -61,7 +61,6 @@ export default function Game({ players, onChangePlayerName, onQuitGame }) {
         <GameResult
           message={messageResultCaption}
           onRestartGame={handleRestartGame}
-          onQuitGame={onQuitGame}
         />
       )}
 

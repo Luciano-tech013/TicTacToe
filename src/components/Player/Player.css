@@ -28,7 +28,8 @@
 .list__players__item__symbol {
     color: rgb(227, 227, 227);
     font-size: 2.2rem;
-    font-family: 'Caprasimo', cursive;
+    font-family: 'Delius', cursive;
+    font-weight: bold;
     flex-shrink: 0; 
     width: 2rem;
     text-align: center;
@@ -43,7 +44,8 @@
 }
 
 .list__players__item__name {
-    font-family: 'Caprasimo', cursive;
+    font-family: 'Delius', cursive;
+    font-weight: bold;
     box-sizing: border-box;
     display: inline-block;
     width: 10rem;
@@ -61,7 +63,8 @@
     font: inherit;
     color: rgb(182, 182, 182);
     font-size: 1.8rem;
-    font-family: 'Caprasimo', cursive;
+    font-family: 'Delius', cursive;
+    font-weight: bold;
     width: 10rem;
     border: none;
     padding: 0.3rem;
