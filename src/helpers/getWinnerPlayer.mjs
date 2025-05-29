@@ -5,7 +5,7 @@ const deriveWinnerPlayer = (winnerSymbol, players) => {
 };
 
 //Extraje la lógica para organizacion del código
-export function useWinner(gameBoard, players) {
+export function getWinnerPlayer(gameBoard, players) {
   //Devuelve la combinacion ganadora  o si no devuelve undefined
   const winnerCombination = WINNING_COMBINATIONS.find((combination) => {
     const firstSquareSymbol = gameBoard[combination[0].row][combination[0].col];

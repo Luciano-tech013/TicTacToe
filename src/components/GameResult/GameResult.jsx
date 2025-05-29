@@ -8,22 +8,24 @@ import confetti from "canvas-confetti";
 import "./GameResult.css";
 import NavigateButton from "../NavigateButton/NavigateButton";
 
-export default function GameResult({ message, onRestartGame }) {
+export default function GameResult({ message, winner, onRestartGame }) {
   const { playSound, soundEnabled } = useEffectSound(winnerSound);
 
   useEffect(() => {
     if(soundEnabled)
       playSound();
-  })
+  }, [soundEnabled])
 
   useEffect(() => {
-    // dispara el confetti una vez al montar GameResult
-    confetti({
-      particleCount: 200,
-      spread: 60,
-      origin: { y: 0.6 },
-    });
-  }, []);
+    if(winner) {
+      // dispara el confetti una vez al montar GameResult
+      confetti({
+        particleCount: 200,
+        spread: 60,
+        origin: { y: 0.6 },
+      });
+    }
+  }, [winner]);
 
   return (
     <div className="gameresult__container">

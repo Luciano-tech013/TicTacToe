@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useGameBoard } from "../../hooks/useGameBoard.mjs";
-import { useWinner } from "../../hooks/useWinner.mjs";
+import { updateGameBoard } from "../../helpers/updateGameBoard.mjs";
+import { getWinnerPlayer } from "../../helpers/getWinnerPlayer.mjs";
 import GameBoard from "../GameBoard/GameBoard";
 import ListPlayers from "../ListPlayers/ListPlayers";
 import GameResult from "../GameResult/GameResult";
@@ -17,10 +17,10 @@ export default function Game({ players, onChangePlayerName }) {
   const activePlayer = deriveActivePlayer(gamePlays);
 
   //Para INSERTAR en el tablero
-  const gameBoard = useGameBoard(gamePlays);
+  const gameBoard = updateGameBoard(gamePlays);
 
   //Estado derivado para saber QUIEN gano o si hubo EMPATE
-  const winner = useWinner(gameBoard, players);
+  const winner = getWinnerPlayer(gameBoard, players);
 
   //Si me quede sin jugadas disponibles y no hubo ganador, es un empate
   const hasDraw = !winner && gamePlays.length === 9;
@@ -60,6 +60,7 @@ export default function Game({ players, onChangePlayerName }) {
       {(winner || hasDraw) && (
         <GameResult
           message={messageResultCaption}
+          winner={winner}
           onRestartGame={handleRestartGame}
         />
       )}

@@ -5,7 +5,7 @@ const INITIAL_GAME_BOARD = [
 ];
 
 //Extraje la lógica para organizacion del código
-export function useGameBoard(gamePlays) {
+export function updateGameBoard(gamePlays) {
   //Copia para no modificar el tablero inicial
   let gameBoard = [...INITIAL_GAME_BOARD.map((array) => [...array])];
 
